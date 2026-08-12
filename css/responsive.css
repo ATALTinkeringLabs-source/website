@@ -1,0 +1,7 @@
+/* Responsive overrides loaded after hero styles */
+
+@media screen and (max-width: 1080px) {
+    body {
+        overflow-x: hidden;
+    }
+}
