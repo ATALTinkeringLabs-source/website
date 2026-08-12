@@ -1,160 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Innovation Lab | Demo</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#07111f;--card:#0d1b2d;--card2:#10243a;--text:#f5f7fb;
-  --muted:#9eafc4;--accent:#39d98a;--accent2:#39a9ff;--border:#1d334d
-}
-html{scroll-behavior:smooth}
-body{font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-a{text-decoration:none;color:inherit}
-nav{position:fixed;top:0;width:100%;z-index:10;background:rgba(7,17,31,.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06)}
-.nav-inner{max-width:1180px;margin:auto;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 22px}
-.logo{font-size:21px;font-weight:800;letter-spacing:.5px}
-.logo span{color:var(--accent)}
-.nav-links{display:flex;gap:28px;color:var(--muted);font-size:14px}
-.nav-links a:hover{color:white}
-.btn{display:inline-block;padding:12px 19px;border-radius:10px;background:var(--accent);color:#04130c;font-weight:800;font-size:14px}
-.btn.outline{background:transparent;color:white;border:1px solid var(--border);margin-left:8px}
-.hero{min-height:92vh;display:flex;align-items:center;position:relative;overflow:hidden}
-.hero:before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:rgba(57,217,138,.12);filter:blur(90px);right:-150px;top:80px}
-.hero:after{content:"";position:absolute;width:400px;height:400px;border-radius:50%;background:rgba(57,169,255,.1);filter:blur(90px);left:-180px;bottom:-100px}
-.hero-inner{max-width:1180px;width:100%;margin:auto;padding:130px 22px 80px;position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:55px;align-items:center}
-.badge{display:inline-flex;padding:7px 12px;border:1px solid #24553f;border-radius:30px;color:var(--accent);font-size:12px;font-weight:700;margin-bottom:22px;background:rgba(57,217,138,.06)}
-h1{font-size:clamp(44px,6vw,76px);line-height:1.02;letter-spacing:-3px;margin-bottom:22px}
-.hero p{font-size:18px;color:var(--muted);max-width:650px;margin-bottom:30px}
-.visual{height:430px;border:1px solid var(--border);border-radius:28px;background:linear-gradient(145deg,#10253a,#081522);display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.3)}
-.orbit{width:230px;height:230px;border:1px solid #31516d;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative}
-.orbit:before,.orbit:after{content:"";position:absolute;border:1px dashed #28455d;border-radius:50%}
-.orbit:before{inset:28px}.orbit:after{inset:62px}
-.core{width:92px;height:92px;border-radius:24px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#06121c;font-size:34px;font-weight:900;box-shadow:0 0 45px rgba(57,217,138,.3)}
-.node{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px var(--accent)}
-.n1{top:17px}.n2{right:15px;top:80px}.n3{bottom:25px;left:55px}.n4{left:12px;top:105px}
-section{max-width:1180px;margin:auto;padding:95px 22px}
-.section-title{font-size:35px;margin-bottom:10px}
-.section-sub{color:var(--muted);margin-bottom:35px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:25px;transition:.25s}
-.card:hover{transform:translateY(-5px);border-color:#315673}
-.icon{font-size:30px;margin-bottom:15px}
-.card h3{margin-bottom:8px}.card p{color:var(--muted);font-size:14px}
-.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.project{padding:28px;border-radius:18px;background:var(--card);border:1px solid var(--border)}
-.project-tag{color:var(--accent);font-size:12px;font-weight:800;text-transform:uppercase}
-.project h3{margin:8px 0}.project p{color:var(--muted);font-size:14px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-top:35px}
-.stat{background:var(--card);border:1px solid var(--border);padding:22px;border-radius:16px}
-.stat strong{display:block;font-size:30px;color:var(--accent)}.stat span{color:var(--muted);font-size:13px}
-.cta{background:linear-gradient(135deg,#102b2b,#10243a);border:1px solid var(--border);border-radius:25px;padding:50px;text-align:center}
-.cta p{color:var(--muted);max-width:650px;margin:10px auto 25px}
-footer{border-top:1px solid var(--border);padding:30px 22px;color:var(--muted);text-align:center;font-size:13px}
-@media(max-width:800px){
- .nav-links{display:none}.hero-inner{grid-template-columns:1fr}.visual{height:330px}
- .cards,.projects{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}
- h1{letter-spacing:-2px}
-}
-</style>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ATAL Tinkering Lab</title>
+
+    <!-- Fonts -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+    <link rel="stylesheet"
+          href="css/hero.css">
+
+    <link rel="stylesheet"
+          href="css/responsive.css">
+
 </head>
+
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <div class="logo">INNOVATION<span>LAB</span></div>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#domains">Domains</a>
-      <a href="#projects">Projects</a>
-      <a href="#activities">Activities</a>
+<!--======================================
+
+            HERO SECTION
+
+=======================================-->
+
+<section class="hero">
+
+    <!-- Blueprint Grid -->
+
+    <div class="grid-overlay"></div>
+
+    <!--==================================
+
+            NAVIGATION
+
+    ===================================-->
+
+    <header>
+
+        <div class="logo">
+
+            <img src="assets/logos/ATL_LOGO_transperent.png" alt="ATAL Tinkering Lab Logo" class="logo-img">
+
+            <div class="logo-copy">
+                <div class="atl">ATAL</div>
+                <div class="name">TINKERING LAB</div>
+            </div>
+
+        </div>
+
+        <nav>
+
+            <a href="#">LAB</a>
+
+            <a href="#">PROJECTS</a>
+
+            <a href="#">TECHNOLOGY</a>
+
+            <a href="#">GALLERY</a>
+
+            <a href="#">BLOG</a>
+
+            <a href="#">ABOUT</a>
+
+            <a href="#">CONTACT</a>
+
+        </nav>
+
+    </header>
+
+    <!--==================================
+
+            HERO CONTENT
+
+    ===================================-->
+
+    <div class="hero-container">
+
+        <!-- LEFT SIDE -->
+
+        <div class="hero-left">
+
+            <div class="tags">
+
+                <span># INNOVATE</span>
+
+                <span># BUILD</span>
+
+                <span># INSPIRE</span>
+
+            </div>
+
+            <h1>
+
+                <span>WHERE</span>
+
+                <span class="idea">
+
+                    IDEAS
+
+                </span>
+
+                <span>BECOME</span>
+
+                <span class="innovation">
+
+                    INNOVATIONS
+
+                </span>
+
+            </h1>
+
+            <p>
+
+                A place where young innovators
+                imagine, design, prototype and
+                build solutions for real-world
+                problems.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#" class="btn-primary">
+
+                    EXPLORE THE LAB
+
+                </a>
+
+                <a href="#" class="btn-secondary">
+
+                    SEE PROJECTS
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+
+        <div class="hero-right">
+
+            <!-- Blueprint Layer -->
+
+            <div class="blueprint-layer">
+                <object
+                    id="blueprintSVG"
+                    data="assets/svg/blueprint.svg"
+                    type="image/svg+xml">
+                </object>
+            </div>
+
+            <!-- Dimension Lines -->
+
+            <div class="dimension horizontal"></div>
+
+            <div class="dimension vertical"></div>
+
+            <!-- Technical Notes -->
+
+            <div class="note note1">
+
+                ARM-X200
+
+            </div>
+
+            <div class="note note2">
+
+                SCALE 1:10
+
+            </div>
+
+            <div class="note note3">
+
+                PROTOTYPE
+
+            </div>
+
+        </div>
+
     </div>
-    <a class="btn" href="#contact">Contact Lab</a>
-  </div>
-</nav>
 
-<header class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="badge">● STUDENT INNOVATION & TECHNOLOGY LAB</div>
-      <h1>Build. Test.<br><span style="color:var(--accent)">Innovate.</span></h1>
-      <p>
-        A hands-on innovation lab where students explore robotics, AI, electronics,
-        IoT, sustainability and emerging technologies by building real-world solutions.
-      </p>
-      <a class="btn" href="#projects">Explore Projects</a>
-      <a class="btn outline" href="#about">Discover Our Lab</a>
+    <!--==================================
+
+        DRAWING TITLE BLOCK
+
+    ===================================-->
+
+    <div class="drawing-block">
+
+        <table>
+
+            <tr>
+
+                <td>PROJECT</td>
+
+                <td>ATAL TINKERING LAB</td>
+
+            </tr>
+
+            <tr>
+
+                <td>REV</td>
+
+                <td>2.1</td>
+
+            </tr>
+
+            <tr>
+
+                <td>STATUS</td>
+
+                <td>ACTIVE</td>
+
+            </tr>
+
+            <tr>
+
+                <td>DRAWN BY</td>
+
+                <td>INNOVATORS</td>
+
+            </tr>
+
+        </table>
+
     </div>
-    <div class="visual">
-      <div class="orbit">
-        <div class="node n1"></div><div class="node n2"></div>
-        <div class="node n3"></div><div class="node n4"></div>
-        <div class="core">⚙</div>
-      </div>
+
+    <!--==================================
+
+        SCROLL INDICATOR
+
+    ===================================-->
+
+    <div class="scroll-down">
+
+        SCROLL TO DISCOVER
+
     </div>
-  </div>
-</header>
 
-<section id="about">
-  <h2 class="section-title">About Our Lab</h2>
-  <p class="section-sub">From an idea on paper to a working prototype.</p>
-  <div class="cards">
-    <div class="card"><div class="icon">🤖</div><h3>Robotics</h3><p>Design and build autonomous robots, competition robots and robotic systems.</p></div>
-    <div class="card"><div class="icon">🧠</div><h3>AI & Computer Vision</h3><p>Experiment with machine learning, object detection, vision systems and intelligent automation.</p></div>
-    <div class="card"><div class="icon">⚡</div><h3>Electronics & IoT</h3><p>Build connected devices using microcontrollers, sensors, cloud platforms and embedded systems.</p></div>
-  </div>
 </section>
 
-<section id="domains">
-  <h2 class="section-title">Our Innovation Domains</h2>
-  <p class="section-sub">Technology areas students can explore in the lab.</p>
-  <div class="cards">
-    <div class="card"><div class="icon">🌱</div><h3>Sustainability</h3><p>Carbon monitoring, waste management, renewable energy and environmental technology.</p></div>
-    <div class="card"><div class="icon">🛡️</div><h3>Smart Safety</h3><p>AI-powered workplace safety, monitoring and emergency response systems.</p></div>
-    <div class="card"><div class="icon">🚀</div><h3>Emerging Tech</h3><p>Explore drones, automation, smart systems, edge computing and experimental technologies.</p></div>
-  </div>
+<!--==================================
+
+    PROCESS SECTION
+
+===================================-->
+
+<section class="process-section">
+
+    <div class="process-header">
+
+    <div class="header-tag">
+        <span></span>
+        THE JOURNEY OF
+        <span></span>
+    </div>
+
+    <h2>INNOVATION</h2>
+
+    <div class="header-meta">
+        DESIGN THINKING • ATL FRAMEWORK • REV 2.1
+    </div>
+
+    <p>
+        Every great innovation begins with curiosity and ends
+        with a solution that changes lives.
+    </p>
+
+</div>
+
+    <div class="timeline">
+
+    <div class="row">
+
+        <div class="hex green">
+            <span class="number">01</span>
+            <h3>EMPATHIZE</h3>
+            <p>Observe users and understand real-world challenges.</p>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="hex blue">
+            <span class="number">02</span>
+            <h3>DEFINE</h3>
+            <p>Clearly identify the core problem.</p>
+        </div>
+
+    </div>
+
+    <div class="row reverse">
+
+        <div class="hex orange">
+            <span class="number">03</span>
+            <h3>IDEATE</h3>
+            <p>Create innovative ideas together.</p>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="hex purple">
+            <span class="number">04</span>
+            <h3>PROTOTYPE</h3>
+            <p>Turn concepts into working models.</p>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="hex red">
+            <span class="number">05</span>
+            <h3>TEST</h3>
+            <p>Improve using feedback and iteration.</p>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="hex yellow">
+            <span class="number">06</span>
+            <h3>SHOWCASE</h3>
+            <p>Present your innovation to the world.</p>
+        </div>
+
+    </div>
+
+</div>
+
 </section>
 
-<section id="projects">
-  <h2 class="section-title">Featured Projects</h2>
-  <p class="section-sub">A sample showcase for the lab's project portfolio.</p>
-  <div class="projects">
-    <div class="project"><span class="project-tag">AI + Safety</span><h3>Computer Vision Safety Compliance</h3><p>Edge AI monitors PPE, restricted zones and unsafe human-machine interactions.</p></div>
-    <div class="project"><span class="project-tag">Environment</span><h3>Carbon Bird</h3><p>A drone-inspired environmental monitoring concept for identifying carbon hotspots and collecting live data.</p></div>
-    <div class="project"><span class="project-tag">Energy</span><h3>Waste Heat Bank</h3><p>A prototype concept for capturing and storing usable energy from waste heat sources.</p></div>
-    <div class="project"><span class="project-tag">Robotics</span><h3>SymphoBots</h3><p>A robotic orchestra combining MIDI, Python, ESP32 control and physical instruments.</p></div>
-  </div>
-  <div class="stats">
-    <div class="stat"><strong>50+</strong><span>Projects</span></div>
-    <div class="stat"><strong>100+</strong><span>Students</span></div>
-    <div class="stat"><strong>10+</strong><span>Competitions</span></div>
-    <div class="stat"><strong>∞</strong><span>Ideas</span></div>
-  </div>
-</section>
-
-<section id="activities">
-  <h2 class="section-title">Lab Activities</h2>
-  <p class="section-sub">Learn by building, competing and solving real problems.</p>
-  <div class="cards">
-    <div class="card"><div class="icon">🔧</div><h3>Build Sessions</h3><p>Hands-on electronics, coding, mechanical design and rapid prototyping.</p></div>
-    <div class="card"><div class="icon">🏆</div><h3>Competitions</h3><p>Prepare teams for robotics, innovation, science and technology competitions.</p></div>
-    <div class="card"><div class="icon">💡</div><h3>Innovation Challenges</h3><p>Turn community problems into prototypes, experiments and deployable solutions.</p></div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="cta">
-    <h2>Have an idea?</h2>
-    <p>Bring your problem, prototype or crazy idea to the lab. Let's turn it into something real.</p>
-    <a class="btn" href="mailto:lab@example.com">Connect With Us</a>
-  </div>
-</section>
-
-<footer>
-  © 2026 Innovation Lab · Student Innovation • Robotics • AI • IoT
-</footer>
+<script src="js/main.js"></script>
 
 </body>
+
 </html>
