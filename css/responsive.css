@@ -157,6 +157,19 @@
         padding: 14px 22px;
         font-size: 14px;
     }
+
+    .blog-section {
+        padding: 90px 20px 80px;
+    }
+
+    .blog-header h2 {
+        font-size: 44px;
+    }
+
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
 }
 
 @media screen and (max-width: 520px) {
@@ -229,5 +242,17 @@
         height: 200px;
         margin-top: 24px;
         flex: none;
+    }
+
+    .blog-section {
+        padding: 70px 16px 70px;
+    }
+
+    .blog-header h2 {
+        font-size: 32px;
+    }
+
+    .blog-card h3 {
+        font-size: 20px;
     }
 }
