@@ -11,6 +11,9 @@ const animateBlueprint = () => {
     console.log("Paths found:", paths.length);
     if (!paths.length) return;
 
+    svgObject.style.visibility = "visible";
+    svgObject.style.opacity = "0.5";
+
     paths.forEach((path, index) => {
         const length = path.getTotalLength();
 
