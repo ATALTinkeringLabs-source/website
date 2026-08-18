@@ -1,25 +1,26 @@
-body {
-    background: #faf8f6;
-}
+/*======================================================
+                PROJECTS PAGE STYLES
+         Light Tone Palette (Connecting Pages)
+======================================================*/
 
-.blog-page {
+.projects-page {
     background: linear-gradient(180deg, #faf8f6 0%, #f5f1ed 100%);
     color: #3d3935;
     min-height: 100vh;
 }
 
-.blog-shell {
+.projects-shell {
     max-width: 1200px;
     margin: 0 auto;
     padding: 120px 32px 100px;
 }
 
-.blog-page-header {
+.projects-page-header {
     text-align: center;
     margin-bottom: 52px;
 }
 
-.blog-page-header h1 {
+.projects-page-header h1 {
     font-size: clamp(2.7rem, 6vw, 5rem);
     color: #1a1714;
     letter-spacing: 2px;
@@ -27,7 +28,7 @@ body {
     margin: 0 0 18px;
 }
 
-.blog-page-header p {
+.projects-page-header p {
     color: #6b6460;
     font-size: 18px;
     line-height: 1.7;
@@ -35,13 +36,13 @@ body {
     max-width: 700px;
 }
 
-.blog-list-grid {
+.projects-list-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 30px;
 }
 
-.blog-list-card {
+.project-list-card {
     background: #ffffff;
     border-radius: 24px;
     overflow: hidden;
@@ -50,36 +51,36 @@ body {
     border: 1px solid rgba(212, 206, 198, 0.3);
 }
 
-.blog-list-card:hover {
+.project-list-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 16px 40px rgba(185, 162, 144, 0.15);
 }
 
-.blog-list-card .blog-thumb {
+.project-list-card .project-thumb {
     height: 220px;
     width: 100%;
 }
 
-.blog-list-card .blog-content {
+.project-list-card .project-content {
     padding: 28px 24px 24px;
 }
 
-.blog-list-card h3 {
+.project-list-card h3 {
     margin: 0 0 14px;
     color: #1a1714;
     font-size: 24px;
     line-height: 1.35;
 }
 
-.blog-list-card p {
+.project-list-card p {
     margin: 0 0 20px;
     color: #6b6460;
     font-size: 16px;
     line-height: 1.8;
 }
 
-.blog-list-card a,
-.blog-back-link {
+.project-list-card a,
+.project-back-link {
     display: inline-block;
     color: #9b7e6f;
     font-size: 13px;
@@ -89,12 +90,35 @@ body {
     font-weight: 700;
 }
 
-.blog-list-card a:hover,
-.blog-back-link:hover {
+.project-list-card a:hover,
+.project-back-link:hover {
     color: #1a1714;
 }
 
-.blog-article {
+.project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.project-meta span {
+    display: inline-block;
+    background: #f5f1ed;
+    color: #9b7e6f;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/*======================================================
+                PROJECT DETAIL PAGE
+======================================================*/
+
+.project-article {
     max-width: 900px;
     margin: 0 auto;
     background: rgba(255, 255, 255, 0.98);
@@ -148,7 +172,7 @@ body {
     line-height: 1.9;
 }
 
-.blog-empty {
+.project-empty {
     max-width: 700px;
     margin: 0 auto;
     background: rgba(255, 255, 255, 0.98);
@@ -158,22 +182,26 @@ body {
     color: #3d3935;
 }
 
-.blog-empty h2 {
+.project-empty h2 {
     margin-bottom: 12px;
 }
 
+/*======================================================
+                    RESPONSIVE
+======================================================*/
+
 @media screen and (max-width: 820px) {
-    .blog-shell {
+    .projects-shell {
         padding: 90px 20px 80px;
     }
 
-    .blog-list-grid {
+    .projects-list-grid {
         grid-template-columns: 1fr;
     }
 }
 
 @media screen and (max-width: 520px) {
-    .blog-shell {
+    .projects-shell {
         padding: 80px 16px 70px;
     }
 
