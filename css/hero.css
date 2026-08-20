@@ -144,12 +144,15 @@ header:hover .logo{
     align-items:flex-start;
 }
 
+a.logo,
 .logo{
     display:flex;
     flex-direction:column;
     align-items:center;
     gap:14px;
     width:100%;
+    text-decoration:none;
+    cursor:pointer;
 }
 
 .logo-copy{

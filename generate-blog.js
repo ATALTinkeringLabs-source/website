@@ -64,13 +64,13 @@ function renderHeader(currentPage = 'blog') {
 
   return `
     <header>
-      <div class="logo">
+      <a href="${currentPage === 'blog' ? 'index.html' : '../index.html'}" class="logo" aria-label="Go to home page">
         <img src="${currentPage === 'blog' ? 'assets/logos/ATL_LOGO_transperent.png' : '../assets/logos/ATL_LOGO_transperent.png'}" alt="ATAL Tinkering Lab Logo" class="logo-img">
         <div class="logo-copy">
           <div class="atl">ATAL</div>
           <div class="name">TINKERING LAB</div>
         </div>
-      </div>
+      </a>
       ${nav}
     </header>
   `;
