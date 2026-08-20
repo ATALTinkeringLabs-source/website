@@ -54,7 +54,7 @@ function renderHeader(currentPage = 'blog') {
     <nav>
       <a href="../index.html">LAB</a>
       <a href="../index.html#projects">PROJECTS</a>
-      <a href="../index.html#technology">TECHNOLOGY</a>
+      <a href="../technologies.html">TECHNOLOGY</a>
       <a href="../index.html#gallery">GALLERY</a>
       <a href="${currentPage === 'blog' ? 'blog.html' : '../blog.html'}">BLOG</a>
       <a href="../index.html#about">ABOUT</a>

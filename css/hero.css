@@ -1046,6 +1046,52 @@ header:hover ~ .hero-container{
     gap:32px;
 }
 
+.technology-section {
+    padding: 120px 32px 130px;
+    background: linear-gradient(135deg, #f1eee9 0%, #ffffff 48%, #e6eef4 100%);
+    text-align: center;
+}
+
+.technology-header {
+    max-width: 720px;
+    margin: 0 auto 30px;
+}
+
+.technology-header h2 {
+    margin: 0 0 16px;
+    color: #10284d;
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
+    line-height: 1.05;
+    text-transform: uppercase;
+}
+
+.technology-header p {
+    margin: 0 auto;
+    color: #475569;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.technology-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    color: #10284d;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.technology-cta span {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.technology-cta:hover {
+    color: #d97706;
+}
+
 .blog-card{
     background:#ffffff;
     border:1px solid rgba(15,23,42,.08);
