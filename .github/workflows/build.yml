@@ -1,0 +1,39 @@
+name: Build site from content
+
+# Runs whenever the admin panel (or you) change a Markdown content file.
+on:
+  push:
+    paths:
+      - 'posts/*.md'
+      - 'content/**/*.md'
+      - 'build.js'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-site
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Generate pages
+        run: node build.js
+      - name: Commit generated pages
+        run: |
+          git config user.name  "site-builder"
+          git config user.email "site-builder@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+          else
+            git commit -m "Rebuild site from content"
+            git push
+          fi

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src https://api.github.com; base-uri 'none'; form-action 'none'; object-src 'none'">
+<title>ATL Admin</title>
+<style>
+:root{--bg:#f4f6fb;--card:#fff;--ink:#0f172a;--mute:#64748b;--line:#e2e8f0;--acc:#1d4ed8;--acc2:#1e40af;--bad:#b91c1c;--ok:#15803d}
+@media(prefers-color-scheme:dark){:root{--bg:#0b1220;--card:#111a2e;--ink:#e6edf7;--mute:#94a3b8;--line:#22304d;--acc:#5b8def;--acc2:#7aa2f7;--bad:#f87171;--ok:#4ade80}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+button,input,textarea,select{font:inherit;color:inherit}
+h1,h2,h3{margin:0}
+.top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:12px 20px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.brand{font-weight:700;letter-spacing:.04em}
+.tabs{display:flex;gap:4px;flex:1;flex-wrap:wrap}
+.tab{border:0;background:none;padding:8px 14px;border-radius:8px;cursor:pointer;color:var(--mute);font-weight:600}
+.tab.on{background:var(--acc);color:#fff}
+.btn{border:1px solid var(--line);background:var(--card);padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:600}
+.btn:hover{border-color:var(--acc)}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:#fff}.btn.pri:hover{background:var(--acc2)}
+.btn.bad{color:var(--bad)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+.login{max-width:520px;margin:6vh auto;padding:0 16px}
+.login h1{font-size:24px;margin-bottom:6px}
+label{display:block;font-weight:600;font-size:13px;margin:14px 0 5px}
+input[type=text],input[type=password],input[type=date],input[type=number],textarea,select{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+input:focus,textarea:focus{outline:2px solid var(--acc);outline-offset:-1px}
+textarea{resize:vertical;min-height:80px}
+.hint{color:var(--mute);font-size:12.5px;font-weight:400}
+.wrap{display:grid;grid-template-columns:300px 1fr;gap:18px;padding:18px 20px;max-width:1500px;margin:0 auto}
+@media(max-width:900px){.wrap{grid-template-columns:1fr}}
+.list{display:flex;flex-direction:column;gap:8px;max-height:calc(100vh - 130px);overflow:auto}
+.item{display:flex;gap:10px;align-items:center;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px;cursor:pointer;width:100%}
+.item.on{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc)}
+.sw{width:44px;height:44px;border-radius:8px;flex:none;background-size:cover;background-position:center}
+.item b{display:block;font-size:14px;line-height:1.3}
+.item small{color:var(--mute)}
+.editor{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+@media(max-width:1250px){.editor{grid-template-columns:1fr}}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.row{grid-template-columns:1fr}}
+.swatches{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.swatches button{width:34px;height:34px;border-radius:8px;border:2px solid transparent;cursor:pointer}
+.swatches button.on{border-color:var(--ink)}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;align-items:center}
+.bar .sp{flex:1}
+.status{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);max-width:92vw;padding:10px 16px;border-radius:10px;background:var(--ink);color:var(--bg);font-weight:600;box-shadow:0 8px 30px #0004;z-index:20}
+.status.bad{background:var(--bad);color:#fff}.status.ok{background:var(--ok);color:#fff}
+.status a{color:inherit}
+.preview{font-family:Georgia,serif}
+.preview .cov{height:170px;border-radius:10px;background-size:cover;background-position:center}
+.preview .meta{display:flex;gap:12px;font:600 12px system-ui;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;margin:14px 0 6px}
+.preview h2{font-size:26px;line-height:1.2}
+.preview .by{color:var(--mute);font:14px system-ui;margin:6px 0 14px}
+.preview p{margin:0 0 14px;line-height:1.7}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-top:14px}
+.img{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card)}
+.img div.t{height:110px;background-size:cover;background-position:center;background-color:var(--bg)}
+.img p{margin:0;padding:6px 8px;font-size:12px;word-break:break-all;color:var(--mute)}
+.img .b{display:flex;gap:6px;padding:0 8px 8px}.img .b button{flex:1;padding:4px;font-size:12px}
+.empty{color:var(--mute);padding:30px;text-align:center}
+.hide{display:none!important}
+ol.steps{padding-left:20px;margin:8px 0}ol.steps li{margin:4px 0}
+code{background:var(--bg);padding:1px 5px;border-radius:5px;font-size:13px}
+</style>
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<div id="loginView" class="login">
+  <div class="card">
+    <h1>ATL site admin</h1>
+    <p class="hint" style="margin:0 0 6px">Sign in with a GitHub access token. It stays in this browser and is only ever sent to GitHub.</p>
+    <label>GitHub username or organisation
+      <input type="text" id="fOwner" autocomplete="off" placeholder="e.g. atl-malleshwaram"></label>
+    <div class="row">
+      <label>Repository name<input type="text" id="fRepo" autocomplete="off" placeholder="website"></label>
+      <label>Branch<input type="text" id="fBranch" autocomplete="off" value="main"></label>
+    </div>
+    <label>Access token
+      <input type="password" id="fToken" autocomplete="off" placeholder="github_pat_…"></label>
+    <label style="font-weight:400;display:flex;gap:8px;align-items:center;margin-top:10px">
+      <input type="checkbox" id="fRemember"> Remember me on this device <span class="hint">(only tick on your own computer)</span></label>
+    <div class="bar"><button class="btn pri" id="loginBtn">Sign in</button></div>
+    <details style="margin-top:18px">
+      <summary style="cursor:pointer;font-weight:600">How do I get a token?</summary>
+      <ol class="steps">
+        <li>Open <code>github.com/settings/personal-access-tokens/new</code></li>
+        <li>Resource owner: your account or organisation. Expiration: 90 days or less.</li>
+        <li>Repository access: <b>Only select repositories</b> → pick this website repo.</li>
+        <li>Permissions → Repository permissions → <b>Contents: Read and write</b>.</li>
+        <li>Generate, copy the token and paste it above.</li>
+      </ol>
+    </details>
+  </div>
+</div>
+
+<!-- ============ APP ============ -->
+<div id="appView" class="hide">
+  <div class="top">
+    <span class="brand">ATL ADMIN</span>
+    <div class="tabs" id="tabs"></div>
+    <a class="btn" id="viewSite" target="_blank" rel="noopener" href="../">View site ↗</a>
+    <button class="btn" id="logoutBtn">Sign out</button>
+  </div>
+
+  <!-- content collections -->
+  <div class="wrap" id="collView">
+    <div>
+      <button class="btn pri" id="newBtn" style="width:100%;margin-bottom:12px"></button>
+      <div class="list" id="list"></div>
+    </div>
+    <div id="editorHost"><div class="card empty">Pick an item on the left, or create a new one.</div></div>
+  </div>
+
+  <!-- images -->
+  <div class="wrap hide" id="imgView" style="grid-template-columns:1fr">
+    <div class="card">
+      <h2>Images</h2>
+      <p class="hint">Upload photos to use as covers. Large photos are shrunk to 1600px wide automatically.</p>
+      <input type="file" id="imgFile" accept="image/png,image/jpeg,image/webp,image/gif" multiple>
+      <div class="grid" id="imgGrid"></div>
+    </div>
+  </div>
+</div>
+
+<div id="status" class="status hide"></div>
+
+<script>
+'use strict';
+/* ------------------------------------------------------------------ config */
+const GRADIENTS = [
+  'linear-gradient(135deg,#0f172a 0%, #1d4ed8 45%, #5ccbff 100%)',
+  'linear-gradient(135deg,#0b2340 0%, #143b63 35%, #f4a31e 100%)',
+  'linear-gradient(135deg,#10284d 0%, #2563eb 45%, #7dd3fc 100%)',
+  'linear-gradient(135deg, #d4c5b9 0%, #a8916d 45%, #7a9b6f 100%)',
+  'linear-gradient(135deg, #d4c5b9 0%, #8ab4d4 45%, #7ba8d1 100%)',
+  'linear-gradient(135deg, #283618 0%, #606c38 50%, #dda15e 100%)',
+  'linear-gradient(135deg, #3a0ca3 0%, #4361ee 48%, #4cc9f0 100%)',
+  'linear-gradient(135deg, #22333b 0%, #4f6d7a 50%, #f4a261 100%)'
+];
+const COMMON = ['title','category','date','readTime','excerpt','author','cover'];
+const COLL = {
+  blog:         {label:'Blog posts',   dir:'posts',                noun:'post',       fields:COMMON, sort:'date'},
+  projects:     {label:'Projects',     dir:'content/projects',     noun:'project',    fields:COMMON, sort:'date'},
+  technologies: {label:'Technologies', dir:'content/technologies', noun:'technology', fields:['title','icon','category','level','order','excerpt','author','cover'], sort:'order'}
+};
+const FIELD = {
+  title:{label:'Title'}, category:{label:'Category', ph:'e.g. STEM'}, date:{label:'Date', type:'date'},
+  readTime:{label:'Read time', ph:'filled in automatically', hint:'Updates itself as you write; type over it to change.'},
+  excerpt:{label:'Short summary', area:true, hint:'Shown on the list cards.'}, author:{label:'Author'},
+  icon:{label:'Icon', ph:'⚙', hint:'One symbol or a few characters.'}, level:{label:'Level', ph:'Beginner to advanced'},
+  order:{label:'Display order', type:'number', hint:'1 shows first.'}
+};
+
+/* ------------------------------------------------------------------ state */
+const $ = (id) => document.getElementById(id);
+const S = { owner:'', repo:'', branch:'main', token:'', tab:'blog', items:{}, cur:null, dirty:false };
+
+/* ------------------------------------------------------------------ helpers */
+function el(tag, props, ...kids){
+  const e = document.createElement(tag);
+  for (const [k,v] of Object.entries(props||{})){
+    if (k==='class') e.className=v; else if (k==='style') e.style.cssText=v;
+    else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
+    else if (v!==undefined && v!==null) e.setAttribute(k,v);
+  }
+  kids.flat().forEach(c => e.append(c instanceof Node ? c : document.createTextNode(c)));
+  return e;
+}
+let statusTimer;
+function say(msg, kind, link){
+  const s=$('status'); s.className='status '+(kind||''); s.textContent=msg;
+  if(link){ s.append(' ', el('a',{href:link.href,target:'_blank',rel:'noopener'},link.text)); }
+  clearTimeout(statusTimer); if(kind!=='bad') statusTimer=setTimeout(()=>s.classList.add('hide'), 6000);
+}
+const slugify = (t) => t.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60);
+const enc = (p) => p.split('/').map(encodeURIComponent).join('/');
+const utf8ToB64 = (s) => { let bin=''; new TextEncoder().encode(s).forEach(b=>bin+=String.fromCharCode(b)); return btoa(bin); };
+const b64ToUtf8 = (b) => new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\s/g,'')), c=>c.charCodeAt(0)));
+const today = () => new Date().toISOString().slice(0,10);
+const previewUrl = (v) => v.startsWith('/') ? '..'+v : v;
+function coverStyle(c){
+  if(!c) return GRADIENTS[0];
+  return /gradient|^#|^rgb/i.test(c) ? c : `url("${previewUrl(c).replace(/"/g,'%22')}") center/cover no-repeat`;
+}
+
+/* ------------------------------------------------------------------ GitHub API */
+async function gh(path, opts={}){
+  const res = await fetch('https://api.github.com'+path, {
+    ...opts,
+    headers:{ 'Accept':'application/vnd.github+json', 'Authorization':'Bearer '+S.token, 'X-GitHub-Api-Version':'2022-11-28',
+              ...(opts.body?{'Content-Type':'application/json'}:{}) }
+  });
+  if(!res.ok){
+    let m=''; try{ m=(await res.json()).message }catch{}
+    const e=new Error(m||res.statusText); e.status=res.status; throw e;
+  }
+  return res.status===204 ? null : res.json();
+}
+const repoPath = (p) => `/repos/${S.owner}/${S.repo}/contents/${enc(p)}`;
+async function listDir(dir){
+  try { return await gh(`${repoPath(dir)}?ref=${encodeURIComponent(S.branch)}`); }
+  catch(e){ if(e.status===404) return []; throw e; }
+}
+async function putFile(path, base64, message, sha){
+  return gh(repoPath(path), {method:'PUT', body:JSON.stringify({message, content:base64, branch:S.branch, ...(sha?{sha}:{})})});
+}
+function friendly(e){
+  if(e.status===401) return 'GitHub rejected the token. It may have expired — sign in again.';
+  if(e.status===403) return 'GitHub says no: check the token has "Contents: Read and write" for this repo (or you are rate limited).';
+  if(e.status===404) return 'Not found. Check the username, repository and branch names.';
+  if(e.status===409||e.status===422) return 'This file was changed on GitHub since you opened it. Copy your text, reload the item, and try again.';
+  return e.message||'Something went wrong.';
+}
+
+/* ------------------------------------------------------------------ front matter */
+function parseMd(src){
+  src = src.replace(/\r\n/g,'\n');
+  const m = src.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+  if(!m) return {data:{}, body:src.trim()};
+  const data={};
+  for(const line of m[1].split('\n')){
+    const i=line.indexOf(':'); if(i<0) continue;
+    const k=line.slice(0,i).trim(); let v=line.slice(i+1).trim();
+    if(v.startsWith('"')&&v.endsWith('"')){ try{ v=JSON.parse(v) }catch{ v=v.slice(1,-1) } }
+    else if(v.startsWith("'")&&v.endsWith("'")) v=v.slice(1,-1);
+    data[k]=v;
+  }
+  return {data, body:m[2].trim()};
+}
+function toMd(data, body){
+  const lines = Object.entries(data).filter(([,v])=>v!==''&&v!=null).map(([k,v])=>`${k}: ${JSON.stringify(String(v))}`);
+  return `---\n${lines.join('\n')}\n---\n\n${body.trim()}\n`;
+}
+
+/* ------------------------------------------------------------------ login */
+function loadSaved(){
+  const saved = JSON.parse(localStorage.getItem('atl-admin')||'{}');
+  $('fOwner').value=saved.owner||''; $('fRepo').value=saved.repo||''; $('fBranch').value=saved.branch||'main';
+  const tok = sessionStorage.getItem('atl-token') || localStorage.getItem('atl-token') || '';
+  if(tok) $('fToken').value=tok;
+  return saved.owner&&saved.repo&&tok;
+}
+async function login(){
+  S.owner=$('fOwner').value.trim(); S.repo=$('fRepo').value.trim(); S.branch=$('fBranch').value.trim()||'main'; S.token=$('fToken').value.trim();
+  if(!S.owner||!S.repo||!S.token){ say('Fill in every box.','bad'); return; }
+  $('loginBtn').disabled=true;
+  try{
+    const r = await gh(`/repos/${S.owner}/${S.repo}`);
+    if(r.permissions && r.permissions.push===false){ say('This token can read but not write. Give it "Contents: Read and write".','bad'); return; }
+    localStorage.setItem('atl-admin', JSON.stringify({owner:S.owner,repo:S.repo,branch:S.branch}));
+    sessionStorage.setItem('atl-token', S.token);
+    if($('fRemember').checked) localStorage.setItem('atl-token', S.token); else localStorage.removeItem('atl-token');
+    $('loginView').classList.add('hide'); $('appView').classList.remove('hide');
+    buildTabs(); openTab('blog');
+  }catch(e){ say(friendly(e),'bad'); }
+  finally{ $('loginBtn').disabled=false; }
+}
+function logout(){
+  if(S.dirty && !confirm('You have unsaved changes. Sign out anyway?')) return;
+  sessionStorage.removeItem('atl-token'); localStorage.removeItem('atl-token'); location.reload();
+}
+
+/* ------------------------------------------------------------------ tabs */
+function buildTabs(){
+  const t=$('tabs'); t.replaceChildren();
+  [...Object.entries(COLL).map(([k,v])=>[k,v.label]), ['images','Images']].forEach(([k,l])=>{
+    t.append(el('button',{class:'tab',id:'tab-'+k,onclick:()=>guard(()=>openTab(k))}, l));
+  });
+}
+function guard(fn){ if(S.dirty && !confirm('You have unsaved changes. Leave without saving?')) return; S.dirty=false; fn(); }
+async function openTab(k){
+  S.tab=k; S.cur=null;
+  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on', b.id==='tab-'+k));
+  const isImg = k==='images';
+  $('collView').classList.toggle('hide', isImg); $('imgView').classList.toggle('hide', !isImg);
+  if(isImg){ loadImages(); return; }
+  $('newBtn').textContent = '+ New '+COLL[k].noun;
+  $('editorHost').replaceChildren(el('div',{class:'card empty'},'Pick an item on the left, or create a new one.'));
+  await loadList(k);
+}
+
+/* ------------------------------------------------------------------ list */
+async function loadList(k, force){
+  const list=$('list');
+  if(!S.items[k]||force){
+    list.replaceChildren(el('div',{class:'empty'},'Loading…'));
+    try{
+      const files=(await listDir(COLL[k].dir)).filter(f=>f.type==='file'&&f.name.endsWith('.md'));
+      S.items[k]=await Promise.all(files.map(async f=>{
+        const r=await gh(`${repoPath(f.path)}?ref=${encodeURIComponent(S.branch)}`);
+        const {data,body}=parseMd(b64ToUtf8(r.content));
+        return {id:f.name.replace(/\.md$/,''), path:f.path, sha:r.sha, data, body};
+      }));
+    }catch(e){ list.replaceChildren(el('div',{class:'empty'},friendly(e))); return; }
+  }
+  renderList();
+}
+function renderList(){
+  const k=S.tab, c=COLL[k], list=$('list');
+  const items=[...S.items[k]].sort((a,b)=> c.sort==='order'
+      ? (Number(a.data.order||999)-Number(b.data.order||999))
+      : String(b.data.date||'').localeCompare(String(a.data.date||'')));
+  if(!items.length){ list.replaceChildren(el('div',{class:'empty'},'Nothing here yet.')); return; }
+  list.replaceChildren(...items.map(it=>{
+    const sw=el('div',{class:'sw'}); sw.style.background=coverStyle(it.data.cover);
+    return el('button',{class:'item'+(S.cur&&S.cur.id===it.id?' on':''), onclick:()=>guard(()=>openItem(it))},
+      sw, el('span',{}, el('b',{},it.data.title||it.id), el('small',{}, [it.data.category, it.data.date].filter(Boolean).join(' · '))));
+  }));
+}
+
+/* ------------------------------------------------------------------ editor */
+function openItem(it){
+  S.cur = it ? {id:it.id, path:it.path, sha:it.sha, isNew:false, data:{...it.data}, body:it.body}
+             : {id:'', path:'', sha:null, isNew:true, data:{date:today(), author:'ATL Team', cover:GRADIENTS[0], ...(S.tab==='technologies'?{icon:'◆',order:String((S.items.technologies||[]).length+1)}:{})}, body:''};
+  S.dirty=false; renderList(); renderEditor();
+}
+function renderEditor(){
+  const c=COLL[S.tab], cur=S.cur, host=$('editorHost');
+  const form=el('div',{class:'card'});
+  const fields=c.fields.filter(f=>f!=='cover');
+
+  const mk = (f)=>{
+    const m=FIELD[f]||{label:f};
+    const input = m.area ? el('textarea',{id:'f_'+f, rows:'2'}) : el('input',{id:'f_'+f, type:m.type||'text', placeholder:m.ph||''});
+    input.value = cur.data[f]||'';
+    input.addEventListener('input',()=>{ cur.data[f]=input.value; S.dirty=true; if(f==='title'&&cur.isNew) slugBox.value=slugify(input.value); renderPreview(); });
+    return el('label',{}, m.label, input, m.hint?el('span',{class:'hint'},' '+m.hint):'');
+  };
+
+  form.append(mk('title'));
+  const slugBox=el('input',{type:'text',id:'f_slug',disabled:cur.isNew?null:'disabled'});
+  slugBox.value=cur.isNew?'':cur.id;
+  slugBox.addEventListener('input',()=>{ slugBox.value=slugify(slugBox.value) });
+  form.append(el('label',{},'Web address name', slugBox, el('span',{class:'hint'}, cur.isNew?' Made from the title; fixed after first save.':' Fixed — changing it would break existing links.')));
+
+  const rest=fields.filter(f=>f!=='title');
+  for(let i=0;i<rest.length;){
+    const f=rest[i], big=FIELD[f]&&FIELD[f].area;
+    if(big||i===rest.length-1){ form.append(mk(f)); i++; }
+    else { form.append(el('div',{class:'row'}, mk(f), mk(rest[i+1]))); i+=2; if(rest[i-1]==='excerpt'||rest[i-2]==='excerpt'){} }
+  }
+
+  // cover picker
+  const coverIn=el('input',{type:'text',id:'f_cover'}); coverIn.value=cur.data.cover||'';
+  const sw=el('div',{class:'swatches'});
+  const paintSw=()=>sw.querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.g===coverIn.value));
+  GRADIENTS.forEach(g=>{ const b=el('button',{type:'button',title:'Use this colour',onclick:()=>{coverIn.value=g;cur.data.cover=g;S.dirty=true;paintSw();renderPreview()}}); b.dataset.g=g; b.style.background=g; sw.append(b); });
+  coverIn.addEventListener('input',()=>{cur.data.cover=coverIn.value;S.dirty=true;paintSw();renderPreview()});
+  const up=el('input',{type:'file',accept:'image/*',class:'hide'});
+  up.addEventListener('change',async()=>{ if(!up.files[0])return; try{ say('Uploading…'); const p=await uploadImage(up.files[0]); coverIn.value=p; cur.data.cover=p; S.dirty=true; paintSw(); renderPreview(); say('Image uploaded and set as cover.','ok'); }catch(e){say(friendly(e),'bad')} });
+  form.append(el('label',{},'Cover', sw, el('div',{style:'display:flex;gap:8px'}, coverIn, el('button',{type:'button',class:'btn',onclick:()=>up.click()},'Upload photo…')), up,
+                 el('span',{class:'hint'},'Pick a colour, or upload a photo (it is stored in the repo).')));
+  paintSw();
+
+  // body
+  const body=el('textarea',{id:'f_body',rows:'14',style:'min-height:260px'}); body.value=cur.body;
+  body.addEventListener('input',()=>{
+    cur.body=body.value; S.dirty=true;
+    const rt=$('f_readTime');
+    if(rt && (!rt.value || /^\d+ min read$/.test(rt.value))){ const n=Math.max(1,Math.round(body.value.trim().split(/\s+/).filter(Boolean).length/200)); rt.value=`${n} min read`; cur.data.readTime=rt.value; }
+    renderPreview();
+  });
+  form.append(el('label',{},'Story text', body, el('span',{class:'hint'},'Leave a blank line between paragraphs.')));
+
+  const save=el('button',{class:'btn pri',id:'saveBtn',onclick:doSave},cur.isNew?'Publish':'Save changes');
+  const del=el('button',{class:'btn bad',onclick:doDelete},'Delete');
+  form.append(el('div',{class:'bar'}, save, cur.isNew?'':del, el('span',{class:'sp'}),
+     cur.isNew?'':el('a',{class:'hint',target:'_blank',rel:'noopener',href:`https://github.com/${S.owner}/${S.repo}/blob/${S.branch}/${cur.path}`},'View file on GitHub ↗')));
+
+  const pv=el('div',{class:'card preview',id:'preview'});
+  host.replaceChildren(el('div',{class:'editor'}, form, el('div',{}, el('div',{class:'hint',style:'margin:0 0 6px'},'LIVE PREVIEW (approximate)'), pv)));
+  renderPreview();
+}
+function renderPreview(){
+  const pv=$('preview'); if(!pv||!S.cur) return; const d=S.cur.data;
+  const cov=el('div',{class:'cov'}); cov.style.background=coverStyle(d.cover);
+  const meta=el('div',{class:'meta'}, ...[d.category, d.date, d.readTime||d.level].filter(Boolean).map(x=>el('span',{},x)));
+  const paras=S.cur.body.split(/\n{2,}/).map(p=>p.trim()).filter(Boolean).map(p=>el('p',{},p.replace(/\n/g,' ')));
+  pv.replaceChildren(cov, meta, el('h2',{},d.title||'Untitled'), el('div',{class:'by'},'By '+(d.author||'')), ...paras);
+}
+
+/* ------------------------------------------------------------------ save / delete */
+async function doSave(){
+  const c=COLL[S.tab], cur=S.cur, d=cur.data;
+  if(!(d.title||'').trim()){ say('Add a title first.','bad'); return; }
+  if(!cur.body.trim()){ say('The story text is empty.','bad'); return; }
+  let id=cur.id;
+  if(cur.isNew){
+    id=slugify($('f_slug').value||d.title);
+    if(!id){ say('Could not make a web address from that title. Type one in "Web address name".','bad'); return; }
+    const taken=new Set((S.items[S.tab]||[]).map(i=>i.id)); let n=2, base=id; while(taken.has(id)) id=base+'-'+(n++);
+  }
+  const path=cur.isNew?`${c.dir}/${id}.md`:cur.path;
+  const ordered={}; c.fields.forEach(f=>{ if(d[f]!==undefined&&d[f]!=='') ordered[f]=d[f]; });
+  Object.keys(d).forEach(k=>{ if(!(k in ordered) && d[k]) ordered[k]=d[k]; });   // keep unknown fields
+  $('saveBtn').disabled=true;
+  try{
+    const r=await putFile(path, utf8ToB64(toMd(ordered, cur.body)), `${cur.isNew?'Add':'Update'} ${c.noun}: ${d.title}`, cur.sha);
+    const rec={id, path, sha:r.content.sha, data:{...ordered}, body:cur.body};
+    const arr=S.items[S.tab]||(S.items[S.tab]=[]); const i=arr.findIndex(x=>x.id===id); if(i>=0) arr[i]=rec; else arr.push(rec);
+    S.cur={...rec,isNew:false,data:{...ordered}}; S.dirty=false; renderList(); renderEditor();
+    say('Saved. The live site updates in about a minute.','ok',{href:`https://github.com/${S.owner}/${S.repo}/actions`,text:'Watch progress ↗'});
+  }catch(e){ say(friendly(e),'bad'); $('saveBtn').disabled=false; }
+}
+async function doDelete(){
+  const cur=S.cur; if(!confirm(`Delete “${cur.data.title||cur.id}”? This removes it from the site.`)) return;
+  try{
+    await gh(repoPath(cur.path),{method:'DELETE',body:JSON.stringify({message:`Delete ${COLL[S.tab].noun}: ${cur.data.title||cur.id}`,sha:cur.sha,branch:S.branch})});
+    S.items[S.tab]=S.items[S.tab].filter(i=>i.id!==cur.id); S.cur=null; S.dirty=false;
+    $('editorHost').replaceChildren(el('div',{class:'card empty'},'Deleted.')); renderList();
+    say('Deleted. The live site updates in about a minute.','ok');
+  }catch(e){ say(friendly(e),'bad'); }
+}
+
+/* ------------------------------------------------------------------ images */
+const IMG_DIR='assets/images/uploads';
+async function shrink(file){
+  if(!/^image\/(png|jpeg|webp)$/.test(file.type)) return {blob:file, ext:(file.name.split('.').pop()||'png').toLowerCase()};
+  const bmp=await createImageBitmap(file); const max=1600;
+  if(bmp.width<=max && file.size<1.5e6) return {blob:file, ext:file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg'};
+  const sc=Math.min(1,max/bmp.width), cv=document.createElement('canvas'); cv.width=Math.round(bmp.width*sc); cv.height=Math.round(bmp.height*sc);
+  cv.getContext('2d').drawImage(bmp,0,0,cv.width,cv.height);
+  const png=file.type==='image/png';
+  const blob=await new Promise(r=>cv.toBlob(r, png?'image/png':'image/jpeg', .85));
+  return {blob, ext:png?'png':'jpg'};
+}
+async function uploadImage(file){
+  const {blob,ext}=await shrink(file);
+  if(blob.size>8e6) throw new Error('That image is over 8 MB even after shrinking. Pick a smaller one.');
+  const base=slugify(file.name.replace(/\.[^.]+$/,''))||'image';
+  const name=`${base}-${Date.now().toString(36)}.${ext}`;
+  const buf=new Uint8Array(await blob.arrayBuffer()); let bin=''; for(let i=0;i<buf.length;i+=0x8000) bin+=String.fromCharCode.apply(null,buf.subarray(i,i+0x8000));
+  await putFile(`${IMG_DIR}/${name}`, btoa(bin), `Upload image: ${name}`);
+  return `/${IMG_DIR}/${name}`;
+}
+async function loadImages(){
+  const g=$('imgGrid'); g.replaceChildren(el('div',{class:'empty'},'Loading…'));
+  try{
+    const files=(await listDir(IMG_DIR)).filter(f=>f.type==='file'&&/\.(png|jpe?g|webp|gif|svg)$/i.test(f.name));
+    if(!files.length){ g.replaceChildren(el('div',{class:'empty'},'No uploaded images yet.')); return; }
+    g.replaceChildren(...files.map(f=>{
+      const t=el('div',{class:'t'}); t.style.backgroundImage=`url("../${enc(f.path)}")`;
+      return el('div',{class:'img'}, t, el('p',{},f.name), el('div',{class:'b'},
+        el('button',{class:'btn',onclick:()=>{navigator.clipboard.writeText('/'+f.path).then(()=>say('Path copied: /'+f.path,'ok'))}},'Copy path'),
+        el('button',{class:'btn bad',onclick:async()=>{ if(!confirm('Delete '+f.name+'? Any item using it will lose its cover.'))return;
+          try{ await gh(repoPath(f.path),{method:'DELETE',body:JSON.stringify({message:'Delete image: '+f.name,sha:f.sha,branch:S.branch})}); loadImages(); }catch(e){say(friendly(e),'bad')} }},'Delete')));
+    }));
+  }catch(e){ g.replaceChildren(el('div',{class:'empty'},friendly(e))); }
+}
+$('imgFile').addEventListener('change', async (ev)=>{
+  for(const f of ev.target.files){ try{ say('Uploading '+f.name+'…'); await uploadImage(f); say('Uploaded '+f.name,'ok'); }catch(e){ say(friendly(e),'bad'); } }
+  ev.target.value=''; loadImages();
+});
+
+/* ------------------------------------------------------------------ wiring */
+$('loginBtn').addEventListener('click', login);
+$('logoutBtn').addEventListener('click', logout);
+$('newBtn').addEventListener('click', ()=>guard(()=>openItem(null)));
+['fOwner','fRepo','fBranch','fToken'].forEach(id=>$(id).addEventListener('keydown',e=>{ if(e.key==='Enter') login(); }));
+window.addEventListener('beforeunload',e=>{ if(S.dirty){ e.preventDefault(); e.returnValue=''; } });
+document.addEventListener('keydown',e=>{ if((e.ctrlKey||e.metaKey)&&e.key==='s'&&S.cur){ e.preventDefault(); doSave(); } });
+if(loadSaved()) $('fRemember').checked = !!localStorage.getItem('atl-token');
+</script>
+</body>
+</html>
