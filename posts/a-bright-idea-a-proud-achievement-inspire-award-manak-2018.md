@@ -5,7 +5,7 @@ date: "2018-08-20"
 readTime: "3 min read"
 excerpt: "In 2018, our Smart Street Light project achieved first place at the district-level INSPIRE Award MANAK competition, earning an opportunity to showcase the project at the state-level competition in Mysuru. From developing an idea to presenting it before judges, this milestone marked an important step in our lab's journey of student innovation."
 author: "ATL Team"
-cover: "linear-gradient(135deg,#0f172a 0%, #1d4ed8 45%, #5ccbff 100%)"
+cover: "/assets/images/uploads/blog-4-mvgvtzqn.jpg"
 ---
 
 Sometimes, an idea that changes the way we look at everyday life begins with a simple observation.
