@@ -55,7 +55,7 @@ window.blogPosts = [
     "date": "2017-10-20",
     "readTime": "3 min read",
     "excerpt": "What began with an idea to conserve water and protect our environment became the foundation of a remarkable journey in innovation. Discover how Government High School, 18th Cross, Malleshwaram, took its first step towards building a space where students could explore, experiment, and turn their ideas into reality.",
-    "cover": "url('/assets/images/uploads/7b2a1651-33b7-49c5-bc1a-499c17a132bf-mvghlr03.png') center/cover no-repeat",
+    "cover": "url('/assets/images/uploads/chatgpt-image-oct-20-2026-04-05-25-pm-mvgjs66q.png') center/cover no-repeat",
     "author": "ATL Team",
     "content": [
       "The Beginning of a Dream",
