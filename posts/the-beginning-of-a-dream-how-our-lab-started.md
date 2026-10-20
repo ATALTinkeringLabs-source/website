@@ -1,0 +1,63 @@
+---
+title: "The Beginning of a Dream: How Our Lab Started"
+category: "Our Journey"
+date: "2017-10-20"
+readTime: "3 min read"
+excerpt: "What began with an idea to conserve water and protect our environment became the foundation of a remarkable journey in innovation. Discover how Government High School, 18th Cross, Malleshwaram, took its first step towards building a space where students could explore, experiment, and turn their ideas into reality."
+author: "ATL Team"
+cover: "/assets/images/uploads/7b2a1651-33b7-49c5-bc1a-499c17a132bf-mvghlr03.png"
+---
+
+The Beginning of a Dream
+
+Every great journey begins with a small step. Sometimes, that step is not a machine, a laboratory, or a groundbreaking invention. Sometimes, it begins with an idea and the courage to pursue it.
+
+For our Atal Tinkering Lab at Government High School, 18th Cross, Malleshwaram, Bengaluru, that journey began in October 2017.
+
+An Idea That Opened a Door
+
+The beginning of our story was connected to a simple but important theme: Water Conservation and Go Green.
+
+Led by science teacher Mythra S. P., the school team presented a project on this theme at a competition in Hyderabad. Their effort was part of a journey towards securing an opportunity under the Atal Innovation Mission (AIM), an initiative of NITI Aayog, Government of India.
+
+According to our historical account, the opportunity was highly competitive. Out of 12,500 participating schools, only 500 were selected. Government High School, 18th Cross, Malleshwaram, was among those selected.
+
+This achievement marked an important turning point for the school. It opened the door to a new way of learning—one in which students could explore ideas beyond textbooks and begin engaging with science and technology through practical experiences.
+
+Turning an Opportunity into Reality
+
+Selection was only the beginning. The next challenge was to turn the opportunity into something meaningful for students.
+
+The vision was to create a space where curiosity could lead to experimentation, where questions could lead to discoveries, and where students could learn by building things themselves.
+
+The initiative received support from Dr. C. N. Ashwath Narayan, then MLA of Malleshwaram and later Deputy Chief Minister of Karnataka. Our reference account describes his involvement in supporting the initiative, from the application process to the inauguration of the lab.
+
+The school leadership also played an important role in supporting this new learning environment.
+
+What had started as an idea was beginning to take shape.
+
+The First Step Towards Innovation
+
+The establishment of the Atal Tinkering Lab represented more than the addition of a new facility to the school.
+
+It created an opportunity for students to engage with technology, explore scientific concepts, and begin developing practical problem-solving skills.
+
+The lab's journey would eventually extend into robotics, electronics, engineering projects, student competitions, and opportunities to explore technologies far beyond the traditional classroom.
+
+But those milestones belonged to the future.
+
+In October 2017, the most important achievement was the beginning itself: an opportunity for students to explore what they could create when given the space, tools, and encouragement to experiment.
+
+A Journey Just Beginning
+
+Looking back, the establishment of the lab was the foundation upon which many future experiences would be built.
+
+Every project, every experiment, every competition, and every new opportunity would become part of a larger story—one shaped by students, teachers, mentors, and supporters who believed in the value of learning through innovation.
+
+This was not yet the story of robots competing on international stages or students exploring satellite communications.
+
+It was the beginning of the journey that would make those possibilities imaginable.
+
+In October 2017, our lab took its first step. The journey from tinkering to innovation had begun.
+
+And this was only the beginning.
