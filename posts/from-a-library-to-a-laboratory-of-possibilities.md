@@ -1,7 +1,7 @@
 ---
 title: "From a Library to a Laboratory of Possibilities"
 category: "Our Journey"
-date: "2026-10-20"
+date: "2017-11-20"
 readTime: "4 min read"
 excerpt: "An ordinary school library took on a new purpose, becoming a space for hands-on learning, creativity, and innovation. The journey grew even more meaningful when professors from the University of Turku, Finland, visited our Atal Tinkering Lab and interacted with students as part of an Indo-Finnish collaboration, connecting local learning with international perspectives."
 author: "ATL Team"
