@@ -7,7 +7,7 @@ window.blogPosts = [
     "date": "2026-10-20",
     "readTime": "4 min read",
     "excerpt": "An ordinary school library took on a new purpose, becoming a space for hands-on learning, creativity, and innovation. The journey grew even more meaningful when professors from the University of Turku, Finland, visited our Atal Tinkering Lab and interacted with students as part of an Indo-Finnish collaboration, connecting local learning with international perspectives.",
-    "cover": "linear-gradient(135deg,#0f172a 0%, #1d4ed8 45%, #5ccbff 100%)",
+    "cover": "url('/assets/images/uploads/blog-2-mvgmk6su.jpg') center/cover no-repeat",
     "author": "ATL Team",
     "content": [
       "Sometimes, transforming a space means changing more than its walls. It means changing what people believe is possible inside it.",
